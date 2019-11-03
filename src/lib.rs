@@ -46,6 +46,14 @@ impl Field {
         }
         Ok(())
     }
+
+    pub fn count_cells_for(&self, val: u8) -> usize {
+        self.cells.iter().filter(|&n| *n == val).count()
+    }
+
+    pub fn empty_cells(&self) -> usize {
+        self.count_cells_for(0)
+    }
 }
 
 impl fmt::Display for Field {
@@ -138,9 +146,21 @@ impl Game {
                     1
                 },
                 _ => panic!("Turns broken :(")
+            };
+            if self.field.empty_cells() == 0 {
+                let p1_score = self.field.count_cells_for(1);
+                let p2_score = self.field.count_cells_for(2);
+                self.winner = if p1_score > p2_score {
+                    Some(1)
+                } else if p2_score > p1_score {
+                    Some(2)
+                } else {
+                    Some(0)
+                }
             }
         }
         match self.winner {
+            Some(0) => println!("Draw!!"),
             Some(1) => println!("Player {} Wins!", self.player1),
             Some(2) => println!("Player {} Wins!", self.player2),
             _ => panic!("Winner unknown :(")
