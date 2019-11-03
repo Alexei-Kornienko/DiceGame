@@ -7,7 +7,7 @@ use std::error::Error;
 pub struct Pair(u8, u8);
 
 impl fmt::Display for Pair {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "({} {})", self.0, self.1)
     }
 }
@@ -49,7 +49,7 @@ impl Field {
 }
 
 impl fmt::Display for Field {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "╔{:═<1$}╗", "", self.width+1)?;
         write!(f, "║  ")?;
         for i in 0..self.width {
@@ -80,7 +80,7 @@ pub struct Player {
 }
 
 impl fmt::Display for Player {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.name)
     }
 }
