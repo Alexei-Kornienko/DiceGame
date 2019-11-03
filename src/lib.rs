@@ -50,27 +50,27 @@ impl Field {
 
 impl fmt::Display for Field {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
-        writeln!(f, "╔{:═<1$}╗", "", self.width+1);
-        write!(f, "║  ");
+        writeln!(f, "╔{:═<1$}╗", "", self.width+1)?;
+        write!(f, "║  ")?;
         for i in 0..self.width {
-            write!(f, "{} ", i);
+            write!(f, "{} ", i)?;
         }
-        write!(f, "║\n");
+        write!(f, "║\n")?;
 
         for i in 0..self.height {
-            write!(f, "║{} ", i);
+            write!(f, "║{} ", i)?;
             for j in 0..self.width {
                 match self.cells.get(i*self.width + j) {
-                    Some(0) => write!(f, "□"),
-                    Some(1) => write!(f, "▣"),
-                    Some(2) => write!(f, "▦"),
-                    Some(_) => write!(f, "?"),
+                    Some(0) => write!(f, "□")?,
+                    Some(1) => write!(f, "▣")?,
+                    Some(2) => write!(f, "▦")?,
+                    Some(_) => write!(f, "?")?,
                     None => panic!("Out of bounds")
                 };
             }
-            write!(f, "║\n");
+            write!(f, "║\n")?;
         }
-        writeln!(f, "╚{:═<1$}╝", "", self.width+1);
+        writeln!(f, "╚{:═<1$}╝", "", self.width+1)?;
         Ok(())
     }
 }
