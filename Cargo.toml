@@ -1,5 +1,5 @@
 [package]
-name = "DiceGame"
+name = "dice_game"
 version = "0.1.0"
 authors = ["Alexei Kornienko <alexei.kornienko@gmail.com>"]
 edition = "2018"

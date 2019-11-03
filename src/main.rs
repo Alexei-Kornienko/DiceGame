@@ -1,4 +1,4 @@
-use DiceGame::*;
+use dice_game::*;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Dice Game!");
